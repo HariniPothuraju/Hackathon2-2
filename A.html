@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.shutterstock.com/shutterstock/photos/1914992353/display_1500/stock-photo-hand-holding-paper-cut-smile-face-positive-thinking-mental-health-assessment-world-mental-1914992353.jpg'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.3; /* Adjust this value to control the intensity of the background image */
+    z-index: -1; /* Ensure the background is behind all other content */
+}
+
+.mood-tracker {
+    text-align: center;
+    margin: 20px;
+    position: relative;
+    z-index: 1; /* Ensure this content is above the background image */
+}
+
+.emoji-selection {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.emoji {
+    font-size: 3rem; /* Increased the font size */
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    background: none;
+}
+
+.emoji:hover {
+    transform: scale(1.2);
+}
+
+.mood-log {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+.next-button {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+.next-button:hover {
+    background-color: #0056b3;
+}
+
+.encouraging-message {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+}
+
+</style>
+<body>
+    <div class="mood-tracker">
+        <h1>Track Your Mood</h1>
+        <div class="emoji-selection">
+            <button class="emoji">😊</button>
+            <button class="emoji">😔</button>
+            <button class="emoji">😡</button>
+            <button class="emoji">😢</button>
+            <button class="emoji">😐</button>
+            <button class="emoji">😂</button>
+            <button class="emoji">😴</button>
+            <button class="emoji">😇</button>
+            <button class="emoji">🤔</button>
+        </div>
+        <div class="mood-log"></div>
+        <div class="encouraging-message" id="encouragingMessage"></div>
+        <button class="next-button" onclick="location.href='file:///C:/Users/HP/Desktop/hari.py/A1.html'">Next</button>
+    </div>
+<script>
+document.querySelectorAll('.emoji').forEach(button => {
+    button.addEventListener('click', event => {
+        const mood = event.target.textContent;
+        const log = document.querySelector('.mood-log');
+        const messageElement = document.getElementById('encouragingMessage');
+        const date = new Date();
+        const formattedDate = date.toLocaleString();
+        log.textContent = `You are feeling ${mood} at ${formattedDate}`;
+        
+        // Move the clicked emoji to the top
+        const emojiSelection = document.querySelector('.emoji-selection');
+        emojiSelection.prepend(event.target);
+
+        let encouragingMessage = '';
+        switch (mood) {
+            case '😊':
+                encouragingMessage = 'Glad to see you happy! Keep spreading those positive vibes!';
+                break;
+            case '😔':
+                encouragingMessage = 'It\'s okay to feel down sometimes. Take a deep breath and know that better days are ahead.';
+                break;
+            case '😡':
+                encouragingMessage = 'Anger can be tough to manage, but remember to take a step back and find your calm.';
+                break;
+            case '😢':
+                encouragingMessage = 'Crying can be a healthy way to release emotions. Take care of yourself, you are stronger than you think.';
+                break;
+            case '😐':
+                encouragingMessage = 'Feeling neutral is a part of life. Embrace the calm and find joy in the little things.';
+                break;
+            case '😂':
+                encouragingMessage = 'Laughter is the best medicine! Keep those chuckles coming!';
+                break;
+            case '😴':
+                encouragingMessage = 'Rest is important. Make sure to get enough sleep and recharge your energy.';
+                break;
+            case '😇':
+                encouragingMessage = 'Your kindness and positivity make the world a better place!';
+                break;
+            case '🤔':
+                encouragingMessage = 'Deep thoughts can lead to great ideas. Keep pondering and stay curious!';
+                break;
+        }
+        messageElement.textContent = encouragingMessage;
+    });
+});
+
+</script>
+    <script src="script.js"></script>
+</body>
+</html>
